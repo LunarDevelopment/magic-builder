@@ -45,4 +45,13 @@ class UserController extends Controller {
 
         return response()->json(['token' => $token]);
     }
+    /**
+       * Get all registered users
+       */
+    public function getUsers(Request $request)
+    {
+      $users = User::all();
+      return response()->json(['token' => $token,
+                               'users' => $users]);
+    }
 }

@@ -12,19 +12,25 @@
 */
 
 // OAuth, Login and Signup Routes.
-Route::post('auth/twitter', 'AuthController@twitter');
-Route::post('auth/facebook', 'AuthController@facebook');
-Route::post('auth/foursquare', 'AuthController@foursquare');
-Route::post('auth/github', 'AuthController@github');
-Route::post('auth/google', 'AuthController@google');
-Route::post('auth/linkedin', 'AuthController@linkedin');
-Route::post('auth/login', 'AuthController@login');
-Route::post('auth/signup', 'AuthController@signup');
-Route::get('auth/unlink/{provider}', ['middleware' => 'auth', 'uses' => 'AuthController@unlink']);
-
+Route::group(['prefix' => 'auth'], function()
+{
+  Route::post('twitter', 'AuthController@twitter');
+  Route::post('facebook', 'AuthController@facebook');
+  Route::post('foursquare', 'AuthController@foursquare');
+  Route::post('github', 'AuthController@github');
+  Route::post('google', 'AuthController@google');
+  Route::post('linkedin', 'AuthController@linkedin');
+  Route::post('login', 'AuthController@login');
+  Route::post('signup', 'AuthController@signup');
+  Route::get('unlink/{provider}', ['middleware' => 'auth', 'uses' => 'AuthController@unlink']);
+});
 // API Routes.
-Route::get('api/me', ['middleware' => 'auth', 'uses' => 'UserController@getUser']);
-Route::put('api/me', ['middleware' => 'auth', 'uses' => 'UserController@updateUser']);
+Route::group(['prefix' => 'api'], function()
+{
+  Route::get('user', ['middleware' => 'auth', 'uses' => 'UserController@getUser']);
+  Route::put('user', ['middleware' => 'auth', 'uses' => 'UserController@updateUser']);
+  Route::get('users', ['middleware' => 'auth', 'uses' => 'UserController@getUsers']);
+});
 
 // Initialize Angular.js App Route.
 Route::get('/', 'HomeController@index');

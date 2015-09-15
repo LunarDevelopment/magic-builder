@@ -30,41 +30,16 @@
   <div class="navbar-fixed">
     <nav class="light-blue darken-1" role="navigation">
       <div class="nav-wrapper">
-        <ul ng-show="$storage.application_local_user.displayName" class="left hide-on-med-and-down">
-          <li class=""><a>Hello {{$storage.application_local_user.displayName}}</a>
-          </li>
-        </ul>
+        <hello-user></hello-user>
         <a id="logo-container" href="#/" class="valign-wrapper brand-logo center">
           <!--<img class="valign"  src="images/x" width="56px" height="56px">-->
           Meridian Delta
         </a>
         <ul class="right hide-on-med-and-down">
-          <li class=""><a href="#/">Home</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a href="#/signup">Sign Up</a>
-          </li>
-          <li class="" ng-show="authenticated"><a ng-click="logout();">Log Out</a>
-          </li>
-          <li class="" ng-show="authenticated"><a href="#/profile">Profile</a>
-          </li>
-          <li class="" ng-show="authenticated"><a href="#/dashboard">Dashboard</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
-          </li>
+          <nav-links></nav-links>
         </ul>
         <ul class="side-nav" id="nav-mobile">
-          <li class=""><a href="#/">Home</a>
-          </li>
-          <li class=""><a ng-show="!authenticated" href="#/signup">Sign Up</a>
-          </li>
-          <li class="" ng-show="authenticated"><a ng-click="logout();">Log Out</a>
-          </li>
-          <li class=""><a ng-show="authenticated" href="#/profile">Profile</a>
-          </li>
-          <li class="" ng-show="authenticated"><a href="#/dashboard">Dashboard</a>
-          </li>
-          <li class="" ng-show="!authenticated"><a href="#/login">Log In</a>
-          </li>
+          <nav-links></nav-links>
         </ul>
         <a title="Navigation button" href="#" class="button-collapse" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="250" data-closeonclick="false">
           <i class="mdi-navigation-menu">
@@ -134,6 +109,8 @@
   <script src="scripts/services/modal.js"></script>
   <script src="scripts/services/notify.js"></script>
   <script src="scripts/services/account.js"></script>
+  <script src="scripts/directives/hellouser.js"></script>
+  <script src="scripts/directives/navlinks.js"></script>
   <!-- endbuild -->
 </body>
 
