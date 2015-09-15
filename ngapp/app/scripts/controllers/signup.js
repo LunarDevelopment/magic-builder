@@ -8,7 +8,7 @@
  * Controller of the ngappApp
  */
 angular.module('ngappApp')
-  .controller('SignupCtrl', function ($scope, $auth) {
+  .controller('SignupCtrl', function ($scope, $auth, $rootScope, Notify) {
     var vm = this;
     vm.signup = function () {
       $auth.signup({
@@ -16,23 +16,16 @@ angular.module('ngappApp')
         email: vm.email,
         department: vm.department,
         password: vm.password
+      }).then(function () {
+        $rootScope.authenticated = true;
+        Notify.simpleNew('Welcome! ');
       }).catch(function (response) {
         if (typeof response.data.message === 'object') {
           angular.forEach(response.data.message, function (message) {
-            console.log({
-              content: message[0],
-              animation: 'fadeZoomFadeDown',
-              type: 'material',
-              duration: 3
-            });
+            Notify.simpleNew(message);
           });
         } else {
-          console.log({
-            content: response.data.message,
-            animation: 'fadeZoomFadeDown',
-            type: 'material',
-            duration: 3
-          });
+          Notify.simpleNew(response.data.message);
         }
       });
     };

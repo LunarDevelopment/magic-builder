@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/wamp/www/Projects/TaxiCMS/ngapp/bower_components/html5-boilerplate/src/js/main.js",
+        "C:/wamp/www/Projects/TaxiCMS/ngapp/bower_components/html5-boilerplate/src/js/plugins.js"
+    ]
+}

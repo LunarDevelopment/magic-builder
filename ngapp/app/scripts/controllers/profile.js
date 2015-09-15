@@ -33,7 +33,7 @@ angular.module('ngappApp')
       Account.getProfile()
         .success(function (data) {
           vm.editUser = data;
-          $rootScope.$storage.user = data;
+        $rootScope.$storage.application_local_user = data;
         })
         .error(function (error) {
           console.log({
@@ -53,7 +53,7 @@ angular.module('ngappApp')
         department: vm.editUser.department,
         email: vm.editUser.email
       }).then(function () {
-        $rootScope.$storage.user = angular.extend($rootScope.$storage.user, vm.editUser);
+        $rootScope.$storage.application_local_user = angular.extend($rootScope.$storage.application_local_user, vm.editUser);
         console.log({
           content: 'Profile has been updated',
           animation: 'fadeZoomFadeDown',

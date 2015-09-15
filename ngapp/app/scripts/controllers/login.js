@@ -8,7 +8,7 @@
  * Controller of the ngappApp
  */
 angular.module('ngappApp')
-  .controller('LoginCtrl', function ($scope, $auth, $window, $rootScope) {
+  .controller('LoginCtrl', function ($scope, $auth, $window, $rootScope, Notify) {
     var vm = this;
     vm.login = function () {
       $auth.login({
@@ -17,7 +17,7 @@ angular.module('ngappApp')
         })
         .then(function () {
           $rootScope.authenticated = true;
-          $window.Materialize.toast('You have successfully logged in', 3000);
+          Notify.simpleNew('You have successfully logged in');
         })
         .catch(function (response) {
           $window.Materialize.toast(response.data.message, 3000);
@@ -26,10 +26,10 @@ angular.module('ngappApp')
     vm.authenticate = function (provider) {
       $auth.authenticate(provider)
         .then(function () {
-          $window.Materialize.toast('You have successfully logged in', 3000);
+          Notify.simpleNew('You have successfully connected');
         })
         .catch(function (response) {
-          console.log(response);
+          Notify.new(response);
         });
     };
   });
