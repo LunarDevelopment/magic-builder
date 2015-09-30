@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Config;
 use JWT;
 use App\User;
+use App\Set;
+use App\Card;
 
 class UserController extends Controller {
 

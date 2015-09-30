@@ -27,6 +27,11 @@ Route::group(['prefix' => 'auth'], function()
 // API Routes.
 Route::group(['prefix' => 'api'], function()
 {
+  Route::get('sets', ['uses' => 'MagicController@getSets']);
+  Route::get('cards', ['uses' => 'MagicController@getCards']);
+  Route::get('decks', ['uses' => 'MagicController@getDecks']);
+  Route::post('createDeck', ['uses' => 'MagicController@createDeck']);
+  
   Route::get('user', ['middleware' => 'auth', 'uses' => 'UserController@getUser']);
   Route::put('user', ['middleware' => 'auth', 'uses' => 'UserController@updateUser']);
   Route::get('users', ['middleware' => 'auth', 'uses' => 'UserController@getUsers']);

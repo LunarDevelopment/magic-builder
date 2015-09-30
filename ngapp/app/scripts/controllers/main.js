@@ -8,10 +8,10 @@
  * Controller of the ngappApp
  */
 angular.module('ngappApp')
-  .controller('MainCtrl', function ($window) {
+  .controller('MainCtrl', function ($window, Magic) {
     var vm = this;
-    vm.exampleToast = {
-      duration: 1000,
-      message: 'You reached out!'
-    };
+    vm.magic = Magic;
+    vm.imgString = function (card) {
+      return 'images/' + encodeURI(card.Nset) + '/' + encodeURI(card.Nname) + '.full.jpg';
+    };    
   });

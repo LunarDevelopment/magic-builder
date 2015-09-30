@@ -20,7 +20,11 @@ angular
     'ui.materialize',
     'satellizer',
     'angularPayments',
-    'ngStorage'
+    'ngStorage',
+    'ngCsv', 
+    'angularMoment', 
+    'afkl.lazyImage',
+    'color.picker'
   ])
   .config(function ($routeProvider, $authProvider, $httpProvider, $provide) {
     function redirectWhenLoggedOut($q, $injector) {
@@ -68,31 +72,6 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
-      })
-      .when('/signup', {
-        templateUrl: 'views/signup.html',
-        controller: 'SignupCtrl',
-        controllerAs: 'signup'
-      })
-      .when('/logout', {
-        templateUrl: 'views/logout.html',
-        controller: 'LogoutCtrl',
-        controllerAs: 'logout'
-      })
-      .when('/profile', {
-        templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl',
-        controllerAs: 'profile'
       })
       .otherwise({
         redirectTo: '/'

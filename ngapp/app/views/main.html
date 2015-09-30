@@ -10,16 +10,81 @@
   <div class="row">
     <div class="col offset-l1 l10 s12">
       <div class="card-panel">
-
+        <a ng-repeat="deck in main.magic.decks" ng-style="{'background-color': deck.color}" class="waves-effect waves-light btn-large" ng-click="main.magic.focus_deck(deck)">{{deck.name}}</a>
       </div>
     </div>
   </div>
 </div>
 <div class="section">
   <div class="row">
+    <div class="col m10 s6">
+      <div class="row">
+        <div ng-repeat="card in main.magic.cards | orderBy:'Nid'"  ng-class="{ 
+                                                                             'blue-grey ': !card.quantity,
+                                                                             'blue-grey darken-1': card.quantity === 1,
+                                                                             'blue-grey darken-2': card.quantity === 2,
+                                                                             'blue-grey darken-3': card.quantity === 3,
+                                                                             'blue-grey darken-4': card.quantity === 4,
+                                                                             }" class="card hoverable col m2 s6">
+          <div class="card-content white-text">
+            <div afkl-lazy-image="{{main.imgString(card)}}" class="afkl-lazy-wrapper afkl-img-ratio-1-1 own-classname"></div>
+            <span class="card-title truncate">{{card.Nname}}</span>
+            <div class="chip">
+              {{card.Nset}}
+            </div>
+            <div class="chip">
+              #{{card.Nnumber}}
+            </div>
+          </div>
+          <div class="card-action">
+            <a class="waves-effect waves-red btn-flat" ng-click="main.magic.subtract_from_deck(card);">
+              <i class="material-icons">remove</i>
+            </a>
+            <a class="waves-effect waves-green btn-flat" ng-click="main.magic.add_to_deck(card);">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col m2 s6">
+      <div class="sidebar right" pushpin pushpin-top="0" pushpin-offset="100" pushpin-bottom="Infinity">
+        <form method="post" ng-submit="main.magic.save_deck()" name="newDeckForm">
 
-  </div>
-  <div class="row">
+          <div class="row">
+            <a class="col m6 s12 waves-effect waves-red orange btn-large" ng-click="main.magic.clear_deck();">
+            Clear
+          </a>
+            <button type="submit" ng-disabled="newDeckForm.$invalid" class="col m6 s12  waves-effect waves-teal btn-large green">
+              Save
+            </button>
+          </div>
+          <div input-field class="form-group has-feedback" ng-class="{ 'has-error' : newDeckForm.name.$invalid && newDeckForm.name.$dirty }">
+            <input class="form-control input-lg" type="text" name="name" ng-model="main.magic.deck.name" placeholder="Deck Name" required autofocus>
+            <span class="ion-person form-control-feedback"></span>
+            <div class="help-block text-danger" ng-if="newDeckForm.name.$dirty" ng-messages="newDeckForm.name.$error">
+              <div ng-message="required">You must enter a name.</div>
+            </div>
+          </div>
+          <color-picker color-picker-pos="'bottom left'" color-picker-format="'hex'" ng-model="main.magic.deck.color"></color-picker>
+        </form>
 
+        <table class="striped">
+          <thead>
+            <tr>
+              <th data-field="name">Name</th>
+              <th data-field="quantity">Quantity</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="card in main.magic.deck.cards">
+              <td>{{card.name}}</td>
+              <td>{{card.quantity}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
